@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "231557160152",
+    "project_id": "mazadgame-6c295",
+    "storage_bucket": "mazadgame-6c295.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231557160152:android:02f96b98120cb216a68bad",
+        "android_client_info": {
+          "package_name": "com.example.mazadd"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBHUmhQtGCF_AAhYY3vz6FKnjrQ31qbKU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231557160152:android:9de45bd7d25debcda68bad",
+        "android_client_info": {
+          "package_name": "com.mazad.aksy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBHUmhQtGCF_AAhYY3vz6FKnjrQ31qbKU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

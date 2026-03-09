@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- LaunchTheme: shown while the Flutter engine is warming up.
+         Parent is Theme.Black so the OS window is dark from frame zero.
+         windowBackground points to our solid-dark drawable. -->
+    <style name="LaunchTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        <item name="android:windowBackground">@drawable/launch_background</item>
+        <!-- Prevent the default white Activity background from flashing
+             through before the Flutter surface is ready. -->
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!-- NormalTheme: applied as soon as the Flutter engine draws its
+         first frame. Keep the same dark color so there is no jump. -->
+    <style name="NormalTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        <item name="android:windowBackground">@color/launch_bg</item>
+    </style>
+</resources>

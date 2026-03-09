@@ -1,0 +1,69 @@
+name: mazadd
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  firebase_core: ^4.4.0
+  cloud_firestore: ^6.1.2
+  firebase_auth: ^6.1.4
+  flutter_native_splash: ^2.4.7
+  shared_preferences: ^2.5.4
+  change_app_package_name: ^1.5.0
+  crypto: ^3.0.7
+  confetti: ^0.8.0
+  flutter_vibrate: ^1.4.0
+  google_mobile_ads: ^5.1.0
+  audioplayers: ^6.1.0
+  screenshot: ^3.0.0
+  share_plus: ^12.0.1
+  path_provider: ^2.1.5
+  app_tracking_transparency: ^2.0.6+1
+  connectivity_plus: ^6.1.4
+  url_launcher: ^6.3.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  flutter_launcher_icons: "^0.13.1"
+  image: ^4.8.0
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/app_icon.png"
+  adaptive_icon_foreground: "assets/app_icon_padded.png"
+  # كود اللون الكحلي اللي هيملى الفراغات بدل الأبيض
+  adaptive_icon_background: "#121a2b"
+
+flutter_native_splash:
+  color: "#2D0E4C"
+  image: "assets/app_icon.png"
+  android_12:
+    color: "#2D0E4C"
+    image: "assets/app_icon.png"
+  fullscreen: true
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/grabill54-congratulations-13773_256.gif
+    - assets/pixelmotion4096-birthday-12378_512.gif
+    - assets/init_data.json
+    - assets/images/tuto1.png
+    - assets/images/tuto2.png
+    - assets/images/tuto3.png
+    - assets/images/tuto4.png
+    - assets/images/tuto5.png
+    - assets/images/tuto6.png
+    - assets/images/tuto7.png
+    - assets/images/tuto8.png
+    - assets/sounds/

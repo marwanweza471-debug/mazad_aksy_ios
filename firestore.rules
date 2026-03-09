@@ -1,0 +1,62 @@
+rules_version = '2';
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Mazadd — Firestore Security Rules
+// Last updated: 2026-03-04
+//
+// Architecture context:
+//   • This is a LOCAL multiplayer game. There are no user accounts.
+//   • The ONLY Firestore collection is 'categories' (game word data).
+//   • Writes to 'categories' happen ONLY from the app on first sync.
+//   • There is NO score data in Firestore — scores are local-only.
+//   • There is nothing for a cheater to gain by writing to Firestore.
+//
+// Rule philosophy:
+//   • READ  → open to everyone (the word list must load in the game)
+//   • WRITE → locked to apps presenting a valid Firebase Auth token
+//             (anonymous auth is the recommended approach — see note below)
+//   • All other paths → deny by default
+//
+// HOW TO ENFORCE WRITES PROPERLY:
+//   Option A (Recommended for no-account games): Enable Anonymous Auth in
+//             Firebase Console → Authentication → Sign-in methods → Anonymous.
+//             Call FirebaseAuth.instance.signInAnonymously() once at startup.
+//             The rules below will then allow only authenticated clients to
+//             write — an unauthenticated HTTP request from a hacker is blocked.
+//
+//   Option B (Maximum security, no anonymous writes needed):
+//             Remove write access entirely and use Firebase Admin SDK from
+//             a Cloud Function or your own backend to perform the sync.
+// ═══════════════════════════════════════════════════════════════════════════
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── categories collection ─────────────────────────────────────────────
+    // Stores the game word/category data synced from assets/init_data.json.
+    // Structure: /categories/{categoryId} → { words: [...] }
+    match /categories/{categoryId} {
+
+      // ✅ ALLOW read: any client can load the word list (no auth needed)
+      allow read: if true;
+
+      // ✅ ALLOW write: only a Firebase-authenticated client
+      //    (anonymous auth is sufficient — blocks unauthenticated HTTP attacks)
+      allow write: if request.auth != null
+        // Data shape validation: only allow documents with a 'words' field
+        // that is a list. Blocks a hacker from injecting arbitrary fields.
+        && request.resource.data.keys().hasOnly(['words'])
+        && request.resource.data.words is list;
+
+      // ✅ ALLOW delete: only authenticated clients (for the cleanup sync)
+      allow delete: if request.auth != null;
+    }
+
+    // ── ALL OTHER PATHS → DENY ────────────────────────────────────────────
+    // Nothing else exists in this database. An explicit deny-all catch-all
+    // prevents any future accidental collection from being publicly writable.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
